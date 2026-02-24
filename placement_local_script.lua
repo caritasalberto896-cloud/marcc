@@ -193,19 +193,6 @@ local function startPlacement(modelName)
 			valid = false
 		end
 
-		-- Anti-overlap en cliente (preview): consulta solo objetos ya colocados.
-		local placedFolder = baseFolder:FindFirstChild("PlacedFolder")
-		if valid and placedFolder then
-			local overlapParams = OverlapParams.new()
-			overlapParams.FilterType = Enum.RaycastFilterType.Include
-			overlapParams.FilterDescendantsInstances = { placedFolder }
-
-			local parts = workspace:GetPartBoundsInBox(finalCFrame, rotatedExtents, overlapParams)
-			if #parts > 0 then
-				valid = false
-			end
-		end
-
 		activeIsValid = valid
 
 		local green = Color3.fromRGB(0, 255, 0)
